@@ -25,6 +25,9 @@
         author: {{ comment.author }}<br>
         name: {{ comment.name }}<br>
         {{ comment.text }}<br>
+        {% if request.user.id == article.author.id or request.user.id == comment.author.id %}
+          <a href="{% url 'blog:delete_comment' article.id comment.id %}" class="btn btn-danger">コメント削除</a>
+        {% endif %}
         <hr>
       {% endfor %}
     </div>

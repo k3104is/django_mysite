@@ -1,7 +1,7 @@
 from .models import Post, Comment #Comment追加
 
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import forms #この行追加
 from django.utils import timezone
 from .models import Post
@@ -33,3 +33,12 @@ def article(request, pk):
         'form': form,
         'comments': comments
     }) #form と comment　を追加
+
+def delete_comment(request, pk, comment_pk):    # pk:記事自体の番号、comment_pk:コメントの番号
+    comment = Comment.objects.get(id=comment_pk)
+    post_id = pk
+    # 削除リクエストのユーザid == コメントの筆者(loginid)かポスト(記事)の筆者
+    if request.user.id == comment.author.id or \
+       request.user.id == comment.post.author.id:
+        comment.delete()
+    return redirect('blog:article', pk=post_id)
