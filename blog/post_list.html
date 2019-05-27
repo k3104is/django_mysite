@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>my blog</title>
+    </head>
+    <body>
+
+        {% for post in posts %}
+          <div>
+              <p>date: {{ post.created_date }}</p>
+              <h1><a href="">title: {{ post.title }}</a></h1>
+              <p>{{ post.text|linebreaksbr }}</p>
+              <hr>
+          </div>
+        {% endfor %}
+
+    </body>
+</html>
