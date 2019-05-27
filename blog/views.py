@@ -42,3 +42,17 @@ def delete_comment(request, pk, comment_pk):    # pk:記事自体の番号、com
        request.user.id == comment.post.author.id:
         comment.delete()
     return redirect('blog:article', pk=post_id)
+    
+def create_article(request):
+    form = forms.PostForm()
+    if request.method == "POST":
+        form = forms.PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+        return redirect('blog:article', pk=post.id)
+
+    return render(request, 'blog/create_article.html', {
+        'form': form
+    })
