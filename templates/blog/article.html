@@ -13,5 +13,20 @@
     <p>{{ article.title }}</p>
     <p>{{ article.text|linebreaksbr }}</p>
     <hr>
+    <div>
+      <h3>コメント</h3>
+      <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+      </form>
+      <hr>
+      {% for comment in comments %}
+        author: {{ comment.author }}<br>
+        name: {{ comment.name }}<br>
+        {{ comment.text }}<br>
+        <hr>
+      {% endfor %}
+    </div>
   </body>
 </html>
