@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  </head>
+
+  <body>
+    <a href="{% url 'blog:post_list' %}" class="btn btn-primary">HOMEへ戻る</a>
+    <hr>
+    <h1>記事</h1>
+
+    <p>{{ article.title }}</p>
+    <p>{{ article.text|linebreaksbr }}</p>
+    <hr>
+  </body>
+</html>

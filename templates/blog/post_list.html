@@ -1,10 +1,18 @@
-<!-- Djangoアプリケーションファイル内に書く -->
 <html>
     <head>
-        <title>Ola's blog</title>
+        <title>my blog</title>
     </head>
+
     <body>
-        <p>Hi there!</p>
-        <p>It works!</p>
+
+        {% for post in posts %}
+          <div>
+              <p>date: {{ post.created_date }}</p>
+              <h1><a href="{% url 'blog:article' post.id %}">title: {{ post.title }}</a></h1>
+              <p>{{ post.text|linebreaksbr }}</p>
+              <hr>
+          </div>
+        {% endfor %}
+
     </body>
 </html>
